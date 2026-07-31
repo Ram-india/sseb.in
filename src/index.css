@@ -1,0 +1,483 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/*  Palette
+    --------------------------------------------------------------------------
+    A cooler, less saturated navy than the old #050c3f, with an azure accent in
+    place of the cyan. Values are space-separated RGB so Tailwind can apply
+    opacity to them. Every colour utility in the app reads from these, so light
+    and dark are the same markup.                                             */
+
+:root {
+  /*  Fonts
+      ----------------------------------------------------------------------
+      The heading stack is adobe.com's. Adobe Clean is a licensed Adobe
+      typeface and is not served here, so on essentially every visitor's
+      machine the stack falls through — `--s2a-font-family-heading` is defined
+      below to catch it. Defining it also keeps the declaration valid: an
+      undefined var() inside a font-family list invalidates the whole property
+      at computed-value time, which would drop headings to the inherited font. */
+  --s2a-font-family-heading: 'Plus Jakarta Sans', 'Inter', sans-serif;
+  --font-heading: 'Adobe Clean Display Black', var(--s2a-font-family-heading),
+    adobe-clean-display, 'Arial Bold Adjusted', sans-serif;
+
+  --c-page: 255 255 255;
+  --c-surface: 255 255 255;
+  --c-subtle: 244 247 250;
+  --c-line: 226 232 240;
+  --c-ink: 12 27 42;
+  --c-body: 75 92 112;
+  --c-muted: 114 134 160;
+  --c-accent: 11 111 209;
+  --c-surface-hover: 228 234 242; /* card hover: must read against the
+                                     #f4f7fa section band, not just white */
+  --c-deep: 12 27 42;
+  --c-deep-ink: 236 242 249;
+  --c-shadow: 12 27 42;
+
+  color-scheme: light;
+}
+
+.dark {
+  --c-page: 11 18 32;
+  --c-surface: 19 29 46;
+  --c-subtle: 16 26 41;
+  --c-line: 34 48 73;
+  --c-ink: 237 242 248;
+  --c-body: 167 180 198;
+  --c-muted: 127 142 163;
+  --c-accent: 77 163 255;
+  --c-accent-soft: 23 44 76;
+  --c-secondary: 61 199 212;
+  --c-secondary-soft: 17 52 58;
+  --c-highlight: 232 166 66;
+  --c-elevated: 26 38 58;
+  --c-surface-hover: 28 41 62; /* lifts off the surface rather than sinking */
+  --c-deep: 8 14 26;
+  --c-deep-ink: 237 242 248;
+  --c-shadow: 0 0 0;
+
+  color-scheme: dark;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* Lenis drives the scroll itself while it is mounted; the browser's own
+   smooth-scroll would fight it. */
+html.lenis-active {
+  scroll-behavior: auto;
+}
+
+html.lenis-active,
+html.lenis-active body {
+  height: auto;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+@layer base {
+  body {
+    @apply font-sans text-[17px] font-light leading-[1.7] antialiased;
+    background-color: rgb(var(--c-page));
+    color: rgb(var(--c-body));
+    /* Theme switches shouldn't flash; they should cross-fade. */
+    transition:
+      background-color 300ms ease,
+      color 300ms ease;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply tracking-[-0.02em];
+    font-family: var(--font-heading);
+    font-weight: 800; /* the fallback face's answer to "Black" */
+    color: rgb(var(--c-ink));
+  }
+
+  a {
+    @apply transition-colors;
+  }
+
+  :focus-visible {
+    outline: 2px solid rgb(var(--c-accent));
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+
+  ::selection {
+    background-color: rgb(var(--c-accent));
+    color: #fff;
+  }
+}
+
+@layer components {
+  /* Full-screen hero: fills the viewport below the fixed header. */
+  /* The closing band is a single flat navy on its own; this lifts one corner
+     with the primary and the opposite with the secondary, so it reads as lit
+     rather than printed. */
+  .band-deep {
+    /* This band is dark in both themes, so it re-declares the accents at their
+       on-dark values for its whole subtree. Without this the light-theme teal
+       (#0D7C86) lands on navy and all but disappears. */
+    --c-accent: 77 163 255;
+    --c-secondary: 61 199 212;
+
+    background-color: rgb(var(--c-deep));
+    background-image:
+      radial-gradient(60rem 30rem at 12% 0%, rgb(var(--c-accent) / 0.32), transparent 62%),
+      radial-gradient(48rem 26rem at 92% 100%, rgb(var(--c-secondary) / 0.26), transparent 62%);
+  }
+
+  /* The hero sits over photography in both themes, so — like .band-deep — it
+     re-declares the accents at their on-dark values for its subtree. The
+     light-theme azure is too dark to read against a sunlit photograph. */
+  .on-dark {
+    --c-accent: 77 163 255;
+    --c-secondary: 61 199 212;
+  }
+
+  .hero-fullscreen {
+    height: calc(100vh - var(--header-height, 110px));
+    height: calc(100dvh - var(--header-height, 110px));
+    min-height: 460px;
+  }
+
+  /*  Type scale
+      ----------------------------------------------------------------------
+      Fluid between the small and large ends, so headings track the viewport
+      instead of jumping at breakpoints.                                     */
+
+  .display-1 {
+    @apply tracking-[-0.035em];
+    font-family: var(--font-heading);
+    font-weight: 800;
+    font-size: clamp(2.25rem, 1.45rem + 3.2vw, 4rem);
+    line-height: 1.06;
+  }
+
+  .display-2 {
+    @apply tracking-[-0.03em];
+    font-family: var(--font-heading);
+    font-weight: 800;
+    font-size: clamp(1.875rem, 1.35rem + 2.1vw, 3rem);
+    line-height: 1.12;
+  }
+
+  .title-md {
+    @apply tracking-[-0.02em];
+    font-family: var(--font-heading);
+    font-weight: 800;
+    color: rgb(var(--c-ink));
+    font-size: clamp(1.25rem, 1.12rem + 0.5vw, 1.5rem);
+    line-height: 1.3;
+  }
+
+  .lead {
+    color: rgb(var(--c-body));
+    font-size: clamp(1.0625rem, 1rem + 0.35vw, 1.25rem);
+    line-height: 1.65;
+  }
+
+  .eyebrow {
+    @apply font-sans text-[13px] font-semibold uppercase tracking-[0.16em];
+    color: rgb(var(--c-accent));
+  }
+
+  .prose-corporate {
+    @apply text-[17px] font-light leading-[1.75];
+    color: rgb(var(--c-body));
+  }
+
+  .prose-corporate p + p {
+    @apply mt-5;
+  }
+
+  /* Pill buttons */
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-full px-7 py-3.5 font-sans text-[15px] font-semibold leading-none transition-all duration-200;
+  }
+
+  .btn-primary {
+    @apply btn;
+    background-color: rgb(var(--c-accent));
+    color: #fff;
+  }
+
+  .btn-primary:hover {
+    filter: brightness(1.1);
+  }
+
+  .btn-secondary {
+    @apply btn;
+    background-color: rgb(var(--c-secondary));
+    color: #fff;
+  }
+
+  .btn-secondary:hover {
+    filter: brightness(1.1);
+  }
+
+  .btn-outline {
+    @apply btn border-2 bg-transparent;
+    border-color: rgb(var(--c-line));
+    color: rgb(var(--c-ink));
+  }
+
+  .btn-outline:hover {
+    border-color: rgb(var(--c-accent));
+    color: rgb(var(--c-accent));
+  }
+
+  .btn-light {
+    @apply btn bg-white text-[#0c1b2a];
+  }
+
+  .btn-light:hover {
+    background-color: rgb(var(--c-accent));
+    color: #fff;
+  }
+
+  .btn-light-outline {
+    @apply btn border-2 border-white/70 bg-transparent text-white hover:bg-white hover:text-[#0c1b2a];
+  }
+
+  .link-arrow {
+    @apply inline-flex items-center gap-1.5 text-[15px] font-semibold transition-colors;
+    color: rgb(var(--c-ink));
+  }
+
+  .link-arrow:hover {
+    color: rgb(var(--c-accent));
+  }
+
+  .no-scrollbar {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
+  /*  Elastic rail
+      ----------------------------------------------------------------------
+      Hovering a card widens it and compresses its siblings, the way the
+      elastic carousel on adobe.com behaves. The overshoot in the easing curve
+      is what makes it spring rather than merely resize.
+
+      `--card-siblings` is set by the rail from the card count, so the total
+      track width is unchanged: one card gains exactly what the others give
+      up. That matters because the pinned rail measures the track once and
+      maps scroll onto it — a track that changed width on hover would drift.  */
+
+  .elastic-rail {
+    --card-w: 280px;
+    --card-grow: 84px;
+    --card-siblings: 7;
+  }
+
+  @media (min-width: 640px) {
+    .elastic-rail {
+      --card-w: 330px;
+      --card-grow: 104px;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .elastic-rail {
+      --card-w: 380px;
+      --card-grow: 128px;
+    }
+  }
+
+  .elastic-rail-item {
+    width: var(--card-w);
+    flex: 0 0 auto;
+    transition: width 600ms cubic-bezier(0.34, 1.4, 0.64, 1);
+  }
+
+  /* Only compress when a card is actually hovered, not the gaps between. */
+  .elastic-rail:has(.elastic-rail-item:hover) .elastic-rail-item,
+  .elastic-rail:has(.elastic-rail-item:focus-within) .elastic-rail-item {
+    width: calc(var(--card-w) - var(--card-grow) / var(--card-siblings));
+  }
+
+  /* The compress rule above scores (0,4,0) — `:has()` carries the specificity
+     of its argument — so this must repeat the `:has()` to outrank it at
+     (0,5,0). Written as a plain descendant selector it loses, and the hovered
+     card compresses along with its siblings instead of expanding. */
+  .elastic-rail:has(.elastic-rail-item:hover) .elastic-rail-item:hover,
+  .elastic-rail:has(.elastic-rail-item:focus-within) .elastic-rail-item:focus-within {
+    width: calc(var(--card-w) + var(--card-grow));
+  }
+
+  /*  Card colour
+      ----------------------------------------------------------------------
+      #f3f3f3 at rest, #ffffff on hover. The card stays light in both themes,
+      so its text is pinned to dark values here rather than reading the page
+      tokens — otherwise dark mode would put light text on a light card.      */
+
+  .elastic-card {
+    --card-bg: 243 243 243;
+    --card-title: 12 27 42;
+    --card-detail: 100 116 139;
+    --card-accent: 11 111 209;
+
+    background-color: rgb(var(--card-bg));
+    transition:
+      background-color 320ms ease,
+      box-shadow 320ms ease;
+  }
+
+  .elastic-card:hover,
+  .elastic-card:focus-visible {
+    --card-bg: 255 255 255;
+
+    /* Flat on hover — the width change and the shift to white carry it. The
+       transition on .elastic-card fades the resting shadow out rather than
+       cutting it. */
+    box-shadow: none;
+  }
+
+  /*  Client tone
+      ----------------------------------------------------------------------
+      Each client carries its own hue: the badge is a soft wash of it, the
+      glyph the solid colour, the eyebrow the same again — so the whole header
+      row reads as one identity rather than a stray coloured icon. On hover the
+      badge inverts to solid with a halo ring and springs, on the same
+      overshoot curve as the card width.                                      */
+
+  /*  Marquee rail
+      ----------------------------------------------------------------------
+      The track holds the list twice and travels exactly -50%, so the loop is
+      seamless. It pauses on hover and on keyboard focus, and the mask fades
+      both ends so plates enter and leave rather than being cut off.          */
+
+  .marquee {
+    overflow: hidden;
+    -webkit-mask-image: linear-gradient(
+      90deg,
+      transparent,
+      #000 5%,
+      #000 95%,
+      transparent
+    );
+    mask-image: linear-gradient(90deg, transparent, #000 5%, #000 95%, transparent);
+  }
+
+  .marquee-track {
+    display: flex;
+    width: max-content;
+    gap: 1rem;
+    animation: marquee-scroll 46s linear infinite;
+  }
+
+  .marquee:hover .marquee-track,
+  .marquee:focus-within .marquee-track {
+    animation-play-state: paused;
+  }
+
+  @keyframes marquee-scroll {
+    to {
+      transform: translateX(calc(-50% - 0.5rem));
+    }
+  }
+
+  /* The global reduced-motion rule collapses animation-duration, which would
+     leave the track parked at the end of its travel. Stop it outright and let
+     the rail be scrolled by hand instead. */
+  @media (prefers-reduced-motion: reduce) {
+    .marquee {
+      overflow-x: auto;
+      -webkit-mask-image: none;
+      mask-image: none;
+    }
+
+    .marquee-track {
+      animation: none !important;
+    }
+  }
+
+  .tone-grid {
+    --tone: 11 111 209;
+    --tone-wash: 219 233 252;
+  }
+
+  .tone-water {
+    --tone: 13 148 136;
+    --tone-wash: 204 246 241;
+  }
+
+  .tone-solar {
+    --tone: 21 152 71;
+    --tone-wash: 216 243 224;
+  }
+
+  .tone-civic {
+    --tone: 91 79 199;
+    --tone-wash: 228 226 250;
+  }
+
+  .tone-earth {
+    --tone: 176 106 21;
+    --tone-wash: 250 236 214;
+  }
+
+  .card-badge {
+    background-color: rgb(var(--tone-wash));
+    color: rgb(var(--tone));
+    transition:
+      transform 550ms cubic-bezier(0.34, 1.5, 0.64, 1),
+      background-color 320ms ease,
+      color 320ms ease,
+      box-shadow 420ms ease;
+  }
+
+  .group:hover .card-badge,
+  .group:focus-visible .card-badge {
+    background-color: rgb(var(--tone));
+    color: #fff;
+    transform: scale(1.1) rotate(-8deg);
+    box-shadow: 0 0 0 7px rgb(var(--tone) / 0.16);
+  }
+
+  .card-eyebrow {
+    color: rgb(var(--tone));
+    transition: color 320ms ease;
+  }
+
+  .card-title {
+    color: rgb(var(--card-title));
+    transition: color 320ms ease;
+  }
+
+  .card-detail {
+    color: rgb(var(--card-detail));
+    transition: color 320ms ease;
+  }
+
+  .card-chip {
+    border-color: rgb(var(--card-title) / 0.3);
+    color: rgb(var(--card-title));
+    transition:
+      color 320ms ease,
+      border-color 320ms ease,
+      background-color 320ms ease;
+  }
+}

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Defaults; per-route values are applied by src/components/Seo.jsx -->
+    <meta
+      name="description"
+      content="Sree Saravana Engineering Bhavani Pvt.Ltd (SSEB) is an ISO 9001:2008 Certified Company was established in the year 1981 under the companies Act -1956"
+    />
+    <meta
+      name="keywords"
+      content="sseb,Sree-saravana,Bhavani,Engineering,Sree-Saravana-Engineering,Venkatachalam,Hydro-Power-Projects,Solar-Projects,Civil-works,sseb-India,sseb-Tamilnadu,Construction,Best-Construction-company,"
+    />
+    <!-- Site-wide meta, carried over from header/meta.php -->
+    <meta name="Language" content="English" />
+    <meta name="Distribution" content="Global" />
+    <meta name="author" content="Ram Kumar" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <!-- Plus Jakarta Sans for headings (modern geometric-humanist with real
+         personality at display sizes), Inter for body and UI. -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@600;700;800&family=Inter:wght@200;300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Resolve the theme before first paint so there is no flash of the
+         wrong mode. Kept inline and dependency-free on purpose. -->
+    <script>
+      (function () {
+        try {
+          var stored = localStorage.getItem('sseb-theme')
+          var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches
+          if (stored === 'dark' || (!stored && prefersDark)) {
+            document.documentElement.classList.add('dark')
+          }
+        } catch (e) {}
+      })()
+    </script>
+    <title>SSEB — Sree Saravana Engineering Bhavani Private Limited</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>

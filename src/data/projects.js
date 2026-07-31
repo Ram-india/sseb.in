@@ -1,0 +1,80 @@
+// Project records for the home carousel. Client names, capacities and images
+// are taken from the Revolution Slider captions in index.php.
+//
+// `icon` is the kind of work (bolt for hydro, sun for solar); `tone` is the
+// client, and drives the badge and eyebrow colour: grid = azure (TNEB),
+// water = teal (KSEB), solar = green (renewables).
+export const featuredProjects = [
+  {
+    image: '/assets/img/slider/sseb_slider.jpg',
+    icon: 'power',
+    client: 'Tamil Nadu Electricity Board',
+    tone: 'grid',
+    title: 'Bhavani Barrage-I',
+    detail: '2 × 5 MW (10 MW)',
+    to: '/projects/completed-projects',
+  },
+  {
+    image: '/assets/img/slider/bhavani-sagar-sseb1.jpg',
+    icon: 'power',
+    client: 'Tamil Nadu Electricity Board',
+    tone: 'grid',
+    title: 'Lower Bhavani Right Bank Canal',
+    detail: '2 × 4 MW (8 MW)',
+    to: '/projects/completed-projects',
+  },
+  {
+    image: '/assets/img/slider/Amaravathy_dam_sseb.jpg',
+    icon: 'power',
+    client: 'Tamil Nadu Electricity Board',
+    tone: 'grid',
+    title: 'Amaravathy Dam Hydro Project',
+    detail: '2 × 2 MW (4 MW)',
+    to: '/projects/completed-projects',
+  },
+  {
+    image: '/assets/img/slider/sathanur-hydro-electric-project-sseb.jpg',
+    icon: 'power',
+    client: 'Tamil Nadu Electricity Board',
+    tone: 'grid',
+    title: 'Sathanur Dam Hydro Electric Project',
+    detail: '1 × 7.5 MW',
+    to: '/projects/completed-projects',
+  },
+  {
+    image: '/assets/img/slider/sseb-parsons-valley-hydro-electric-project.jpg',
+    icon: 'power',
+    client: 'Tamil Nadu Electricity Board',
+    tone: 'grid',
+    title: 'Parsonsvally Hydro Electric Project',
+    detail: '1 × 30 MW',
+    to: '/projects/completed-projects',
+  },
+  {
+    image: '/assets/img/slider/sseb-Bhoothathankettu-Hydro-Project-power-house-side-veiw-KSEB.jpg',
+    icon: 'power',
+    client: 'Kerala State Electricity Board',
+    tone: 'water',
+    title: 'Bhoothathankettu Hydro Electric Project',
+    detail: '3 × 8 MW (24 MW)',
+    to: '/projects/on-going-projects',
+  },
+  {
+    image: '/assets/img/slider/sseb-solar-panel.jpg',
+    icon: 'solar',
+    client: 'Renewables',
+    tone: 'solar',
+    title: 'Solar Power Projects',
+    detail: 'EPC — design, supply and commissioning',
+    to: '/projects/completed-projects',
+  },
+  {
+    image: '/assets/img/slider/sseb-solar-panel-water-pumping-systems.jpg',
+    icon: 'solar',
+    client: 'Renewables',
+    tone: 'solar',
+    title: 'Solar Water Pumping Systems',
+    detail: 'Coimbatore, Tamilnadu',
+    to: '/projects/completed-projects',
+  },
+]
