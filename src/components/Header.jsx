@@ -14,6 +14,7 @@ export default function Header() {
 
   const topBarRef = useRef(null)
   const navRowRef = useRef(null)
+  const containerRef = useRef(null)
 
   useEffect(() => setMobileOpen(false), [pathname])
 
@@ -35,6 +36,8 @@ export default function Header() {
     if (!topBar || !navRow) return undefined
 
     const publish = () => {
+      // At-rest height: what the spacer reserves and the full-screen hero
+      // subtracts. Stays constant while the contact bar collapses.
       const height = topBar.offsetHeight + navRow.offsetHeight
       document.documentElement.style.setProperty('--header-height', `${height}px`)
     }
@@ -46,6 +49,26 @@ export default function Header() {
     return () => observer.disconnect()
   }, [])
 
+  // Live height: shrinks with the collapsing contact bar. The reading progress
+  // bar rides on this so it stays flush with the header instead of leaving a
+  // ~38px gap once the bar has collapsed.
+  useEffect(() => {
+    const container = containerRef.current
+    if (!container) return undefined
+
+    const publishLive = () => {
+      document.documentElement.style.setProperty(
+        '--header-height-live',
+        `${Math.round(container.getBoundingClientRect().height)}px`,
+      )
+    }
+
+    publishLive()
+    const observer = new ResizeObserver(publishLive)
+    observer.observe(container)
+    return () => observer.disconnect()
+  }, [])
+
   return (
     <>
       {/* The header is fixed, so collapsing the contact bar cannot shift the
@@ -53,6 +76,7 @@ export default function Header() {
       <div className="shrink-0" style={{ height: 'var(--header-height, 110px)' }} aria-hidden="true" />
 
       <div
+        ref={containerRef}
         className={`header-container fixed inset-x-0 top-0 z-40 transition-shadow duration-300 ${
           scrolled ? 'shadow-[0_6px_24px_-8px_rgb(var(--c-shadow)/0.35)]' : ''
         }`}

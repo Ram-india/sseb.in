@@ -26,7 +26,7 @@ function ClientPlate({ client }) {
       </span>
 
       <p className="mt-5 text-[16px] font-semibold leading-snug text-ink">{client.name}</p>
-      <p className="mt-2 text-[14px] leading-relaxed text-muted">{client.work}</p>
+      <p className="mt-2 text-justify text-[14px] leading-relaxed text-muted">{client.work}</p>
     </div>
   )
 }

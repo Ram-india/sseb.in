@@ -46,7 +46,7 @@ function StackedCard({ card, index, total }) {
           </div>
 
           <div className="lg:w-2/3">
-            <p className="text-[17px] leading-[1.7] text-body">{card.body}</p>
+            <p className="text-justify text-[17px] leading-[1.7] text-body">{card.body}</p>
             <Link to={card.to} className="link-arrow mt-6">
               Read more
               <ArrowRightIcon className="h-3.5 w-3.5 transition-transform group-hover:translate-x-1" />
@@ -63,7 +63,7 @@ function PlainCard({ card, index }) {
     <article className="group rounded-2xl border border-line bg-surface p-8">
       <p className="eyebrow">{String(index + 1).padStart(2, '0')}</p>
       <h3 className="mt-3 font-heading text-[24px] font-bold leading-tight">{card.title}</h3>
-      <p className="mt-4 text-[16px] leading-[1.7] text-body">{card.body}</p>
+      <p className="mt-4 text-justify text-[16px] leading-[1.7] text-body">{card.body}</p>
       <Link to={card.to} className="link-arrow mt-6">
         Read more
         <ArrowRightIcon className="h-3.5 w-3.5 transition-transform group-hover:translate-x-1" />

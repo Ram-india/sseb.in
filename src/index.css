@@ -152,6 +152,33 @@ html.lenis-active body {
     --c-secondary: 61 199 212;
   }
 
+  /*  Interior page hero
+      ----------------------------------------------------------------------
+      A dark band over the site's original title-banner texture. The glow
+      tracks the pointer through --mx/--my, set by a mousemove handler, and
+      fades in only while the header is hovered so it never distracts on a
+      static page.                                                            */
+
+  .page-hero-glow {
+    background: radial-gradient(
+      26rem 26rem at var(--mx, 50%) var(--my, 50%),
+      rgb(var(--c-accent) / 0.28),
+      transparent 68%
+    );
+    opacity: 0;
+    transition: opacity 450ms ease;
+  }
+
+  .page-hero:hover .page-hero-glow {
+    opacity: 1;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .page-hero-glow {
+      display: none;
+    }
+  }
+
   .hero-fullscreen {
     height: calc(100vh - var(--header-height, 110px));
     height: calc(100dvh - var(--header-height, 110px));
@@ -199,9 +226,28 @@ html.lenis-active body {
     color: rgb(var(--c-accent));
   }
 
+  /*  Justified body copy, as the PHP theme had it (custom.css:
+      `article p, ol li { text-align: justify }`).
+
+      Hyphenation is off, so words are never broken across lines. The trade is
+      wider word spacing on justified lines — the content column was widened
+      to 9/12 to keep that in check, since the wider the measure the less
+      justification has to stretch.
+
+      text-align inherits, so everything inside a .prose-corporate article —
+      cards, list items, callouts — picks this up without extra classes.       */
   .prose-corporate {
     @apply text-[17px] font-light leading-[1.75];
     color: rgb(var(--c-body));
+    text-align: justify;
+    hyphens: manual;
+  }
+
+  /* Headings and controls stay left — justifying a two-word heading only
+     stretches it across the column. */
+  .prose-corporate :is(h1, h2, h3, h4, h5, h6),
+  .prose-corporate :is(a[class*='btn'], figcaption, .link-arrow) {
+    text-align: left;
   }
 
   .prose-corporate p + p {

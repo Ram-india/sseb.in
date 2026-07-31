@@ -19,7 +19,7 @@ export default function Footer() {
               height="60"
               className="h-11 w-auto rounded dark:bg-white dark:px-2 dark:py-1"
             />
-            <p className="mt-5 max-w-sm text-[15px] leading-[1.7] text-muted">
+            <p className="mt-5 max-w-sm text-justify text-[15px] leading-[1.7] text-muted">
               Sree Saravana Engineering Bhavani Private Limited — an ISO 9001:2008 certified
               company, established in 1981 under the Companies Act, 1956.
             </p>

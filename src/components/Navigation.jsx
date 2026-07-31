@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import { Link, NavLink, useLocation } from 'react-router-dom'
 import { navigation } from '../data/site'
+import { navIcons } from '../lib/navIcons'
 import {
   ArrowRightIcon,
   BriefcaseIcon,
@@ -18,20 +19,6 @@ import {
   UsersIcon,
 } from './Icons'
 
-const navIcons = {
-  building: BuildingIcon,
-  compass: CompassIcon,
-  user: UserIcon,
-  shield: ShieldCheckIcon,
-  graduation: GraduationIcon,
-  list: ListIcon,
-  check: CheckCircleIcon,
-  pulse: PulseIcon,
-  gear: GearIcon,
-  briefcase: BriefcaseIcon,
-  users: UsersIcon,
-  file: FileEditIcon,
-}
 
 function isBranchActive(item, pathname) {
   if (!item.children) return false

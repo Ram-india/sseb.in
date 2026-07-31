@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion'
+import useInViewOnce from '../hooks/useInViewOnce'
 import useReducedMotion from '../hooks/useReducedMotion'
 
 // Distances are small on purpose: at this scale the motion reads as the page
@@ -24,11 +25,12 @@ export default function Reveal({
   delay = 0,
   direction = 'up',
   scale = false,
-  amount = 0.2,
+  amount = 0.15,
   className = '',
   ...rest
 }) {
   const reduced = useReducedMotion()
+  const [ref, shown] = useInViewOnce({ amount, delay })
   const Tag = motion[as] ?? motion.div
 
   if (reduced) {
@@ -40,12 +42,15 @@ export default function Reveal({
     )
   }
 
+  const hidden = { opacity: 0, ...offsets[direction], ...(scale ? { scale: 0.96 } : {}) }
+  const visible = { opacity: 1, x: 0, y: 0, ...(scale ? { scale: 1 } : {}) }
+
   return (
     <Tag
+      ref={ref}
       className={className}
-      initial={{ opacity: 0, ...offsets[direction], ...(scale ? { scale: 0.96 } : {}) }}
-      whileInView={{ opacity: 1, x: 0, y: 0, ...(scale ? { scale: 1 } : {}) }}
-      viewport={{ once: true, amount }}
+      initial={hidden}
+      animate={shown ? visible : hidden}
       transition={{ duration: 0.9, ease: EASE, delay: delay / 1000 }}
       {...rest}
     >
