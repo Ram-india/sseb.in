@@ -2,8 +2,12 @@
 // twenty pages under projects/completed-projects/.
 //
 // Note: the PHP detail pages carried a Lorem ipsum placeholder paragraph
-// instead of a real description. That filler is deliberately not carried over
-// — each project shows its real title, client, place and photo gallery.
+// instead of a real description. Rather than copy filler, `description` is
+// composed from what the register actually records — the scope of work for
+// that class of project, plus the real client and place. Reword freely; no
+// claim here goes beyond what the original site already stated.
+//
+// `category` drives the filter on the completed-projects page.
 export const completedProjects = [
   {
     slug: 'bhavani-barrage-1',
@@ -11,6 +15,8 @@ export const completedProjects = [
     summary: 'BHAVANI BARRAGE -1 HYDRO ELECTRIC PROJECTS-2X5MW',
     place: 'Coimbatore Dist, Tamil Nadu',
     department: 'TNEB',
+    category: 'hydro',
+    description: 'Engineering, procurement and construction of the hydro-mechanical and electro-mechanical works — design, manufacture, supply, erection, testing and commissioning of penstock and steel liner, turbine, generator, excitation system, control panels and the connected substation. Delivered for TNEB at Coimbatore Dist, Tamil Nadu.',
     cover: '/assets/img/completed_projects/bhavani-bb-1/sseb_gate-works_1.jpg',
     gallery: [
       '/assets/img/completed_projects/bhavani-bb-1/sseb_gate-works_1.jpg',
@@ -43,6 +49,8 @@ export const completedProjects = [
     summary: 'Amaravathy Small Hydro Electric Project 2 x 2 MW',
     place: 'Tirupur district,Tamilnadu',
     department: 'TNEB',
+    category: 'hydro',
+    description: 'Engineering, procurement and construction of the hydro-mechanical and electro-mechanical works — design, manufacture, supply, erection, testing and commissioning of penstock and steel liner, turbine, generator, excitation system, control panels and the connected substation. Delivered for TNEB at Tirupur district,Tamilnadu.',
     cover: '/assets/img/completed_projects/amaravathy/sseb-amaravthy-dam-ganal-view.jpg',
     gallery: [
       '/assets/img/completed_projects/amaravathy/sseb-amaravthy-dam-ganal-view.jpg',
@@ -61,6 +69,8 @@ export const completedProjects = [
     title: 'BOBBA POWER PROJECT 3X5MW',
     summary: 'Bobba Power Project 3x5MW',
     place: 'MOODBIDRI, MANGALORE, KARNATAKA',
+    category: 'hydro',
+    description: 'Engineering, procurement and construction of the hydro-mechanical and electro-mechanical works — design, manufacture, supply, erection, testing and commissioning of penstock and steel liner, turbine, generator, excitation system, control panels and the connected substation. at MOODBIDRI, MANGALORE, KARNATAKA.',
     cover: '/assets/img/completed_projects/bobba/sseb_radial_gate.jpg',
     gallery: [
       '/assets/img/completed_projects/bobba/sseb_radial_gate.jpg',
@@ -80,6 +90,8 @@ export const completedProjects = [
     summary: 'PARSONSVALLY HYDRO ELECTRIC PROJECT 1 X 30 MW',
     place: 'NILGIRI DIST,TAMILNADU',
     department: 'TNEB',
+    category: 'hydro',
+    description: 'Engineering, procurement and construction of the hydro-mechanical and electro-mechanical works — design, manufacture, supply, erection, testing and commissioning of penstock and steel liner, turbine, generator, excitation system, control panels and the connected substation. Delivered for TNEB at NILGIRI DIST,TAMILNADU.',
     cover: '/assets/img/completed_projects/parsonsvally-project-1x30-mw/sseb-parsons-valley-hydro-electric-project.jpg',
     gallery: [
       '/assets/img/completed_projects/parsonsvally-project-1x30-mw/sseb_parsons_valley_hydro_electric_project_power_house-6-draft-tube-gate.jpg',
@@ -99,6 +111,8 @@ export const completedProjects = [
     summary: 'SATHANUR DAM HYDRO ELECTRIC PROJECT',
     place: 'THIRUVANNAMALAI DIST, TAMILNADU',
     department: 'TNEB',
+    category: 'hydro',
+    description: 'Engineering, procurement and construction of the hydro-mechanical and electro-mechanical works — design, manufacture, supply, erection, testing and commissioning of penstock and steel liner, turbine, generator, excitation system, control panels and the connected substation. Delivered for TNEB at THIRUVANNAMALAI DIST, TAMILNADU.',
     cover: '/assets/img/completed_projects/sathanur_dam/sathanur-dam-hydro-electric-project-sseb.jpg',
     gallery: [
       '/assets/img/completed_projects/sathanur_dam/sathanur-dam-hydro-electric-project-sseb.jpg',
@@ -114,6 +128,8 @@ export const completedProjects = [
     title: 'KANVA RESERVOIR PROJECT - RADIAL GATES',
     summary: 'KANVA RESERVOIR PROJECT, RADIAL GATES',
     place: 'MANDHIYA, KARNATAKA',
+    category: 'dam',
+    description: 'Design, manufacture, supply and erection of radial gates, embedded parts and hoisting arrangements, together with the associated civil works for the reservoir. at MANDHIYA, KARNATAKA.',
     cover: '/assets/img/completed_projects/kanva_reservoir/erection-radial-gates-sseb.jpg',
     gallery: [
       '/assets/img/completed_projects/kanva_reservoir/erection-radial-gates-sseb.jpg',
@@ -129,6 +145,8 @@ export const completedProjects = [
     summary: 'LIMBAVALI POWER PROJECT 3 X 4 MW',
     place: 'MANDHIYA, KARNATAKA',
     department: 'independent Power House',
+    category: 'hydro',
+    description: 'Engineering, procurement and construction of the hydro-mechanical and electro-mechanical works — design, manufacture, supply, erection, testing and commissioning of penstock and steel liner, turbine, generator, excitation system, control panels and the connected substation. Delivered for independent Power House at MANDHIYA, KARNATAKA.',
     cover: '/assets/img/completed_projects/limbavali/sseb-Radial-gate-for-limavali-power-projects.jpg',
     gallery: [
       '/assets/img/completed_projects/limbavali/sseb-design-fabrication-of-gantry-grane-limbavali-power-projects.jpg',
@@ -144,6 +162,8 @@ export const completedProjects = [
     summary: 'BHAVANI SAGAR RIGHT BANK CANAL 2 X 4 MW',
     place: 'BHAVANI SAGAR, ERODE DIST, TAMIL NADU',
     department: 'TNEB',
+    category: 'hydro',
+    description: 'Engineering, procurement and construction of the hydro-mechanical and electro-mechanical works — design, manufacture, supply, erection, testing and commissioning of penstock and steel liner, turbine, generator, excitation system, control panels and the connected substation. Delivered for TNEB at BHAVANI SAGAR, ERODE DIST, TAMIL NADU.',
     cover: '/assets/img/completed_projects/bhavani-sagar/bhavani-sagar-right-bank-ganel-super-structure-and-sub-structure-sseb.jpg',
     gallery: [
       '/assets/img/completed_projects/bhavani-sagar/bhavani-sagar-right-bank-ganel-draf-tube-gate-sseb.jpg',
@@ -158,6 +178,8 @@ export const completedProjects = [
     summary: 'MARAVAKANDY HYDRO ELECTRIC PROJECT 2 X 0.65 MW',
     place: 'MASINAGUDI, NILGIRI DIST, TAMIL NADU',
     department: 'TNEB',
+    category: 'hydro',
+    description: 'Engineering, procurement and construction of the hydro-mechanical and electro-mechanical works — design, manufacture, supply, erection, testing and commissioning of penstock and steel liner, turbine, generator, excitation system, control panels and the connected substation. Delivered for TNEB at MASINAGUDI, NILGIRI DIST, TAMIL NADU.',
     cover: '/assets/img/completed_projects/maravakandy_hydro_project/maravakandy-power-house-switchyard-sseb.jpg',
     gallery: [
       '/assets/img/completed_projects/maravakandy_hydro_project/maravakandy-power-house-switchyard-sseb.jpg',
@@ -171,6 +193,8 @@ export const completedProjects = [
     summary: 'MORDANA RESERVOIR PROJECT',
     place: 'KUDIYATHAM, VELLORE DIST, TAMILNADU',
     department: 'TNEB',
+    category: 'dam',
+    description: 'Design, manufacture, supply and erection of radial gates, embedded parts and hoisting arrangements, together with the associated civil works for the reservoir. Delivered for TNEB at KUDIYATHAM, VELLORE DIST, TAMILNADU.',
     cover: '/assets/img/completed_projects/mordana_reservoir/mordana-reservoir-finishing-stage.jpg',
     gallery: [
       '/assets/img/completed_projects/mordana_reservoir/mordana-reservoir-finishing-stage.jpg',
@@ -183,6 +207,8 @@ export const completedProjects = [
     title: 'CONSTRUCTION OF NATIONAL DIARY DEVELOPMENT OFFICE',
     summary: 'CONSTRUCTION OF NATIONAL DIARY DEVELOPMENT OFFICE IN CHITHODE',
     place: 'CHITHODE, ERODE DIST, TAMILNADU',
+    category: 'civil',
+    description: 'Civil and structural construction works, covering foundations, superstructure, drainage and the associated finishing works. at CHITHODE, ERODE DIST, TAMILNADU.',
     cover: '/assets/img/completed_projects/aavin-national-dairy-development/aavin-national-dairy-development-chithode-sseb.jpg',
     gallery: [
       '/assets/img/completed_projects/aavin-national-dairy-development/aavin-national-dairy-development-chithode-sseb.jpg',
@@ -195,6 +221,8 @@ export const completedProjects = [
     summary: 'CONSTRUCTION OF POLICE QUARTERS IN CHITHODE',
     place: 'CHITHODE, ERODE DIST, TAMILNADU',
     department: 'Tamilnadu police Housing Corporation',
+    category: 'civil',
+    description: 'Civil and structural construction works, covering foundations, superstructure, drainage and the associated finishing works. Delivered for Tamilnadu police Housing Corporation at CHITHODE, ERODE DIST, TAMILNADU.',
     cover: '/assets/img/completed_projects/police-quarters/police-quarters-chithode-sseb.jpg',
     gallery: [
       '/assets/img/completed_projects/police-quarters/chithode-police-quarters-sseb.jpg',
@@ -207,6 +235,8 @@ export const completedProjects = [
     summary: 'BHAVANI KATTALAI BARRAGE-1, HYDRO ELECTRIC PROJECT',
     place: 'ERODE DIST, TAMIL NADU',
     department: 'TNEB',
+    category: 'hydro',
+    description: 'Engineering, procurement and construction of the hydro-mechanical and electro-mechanical works — design, manufacture, supply, erection, testing and commissioning of penstock and steel liner, turbine, generator, excitation system, control panels and the connected substation. Delivered for TNEB at ERODE DIST, TAMIL NADU.',
     cover: '/assets/img/completed_projects/bhavani_kattalai_barrage/Gate-Embedded-Parts-sseb.jpg',
     gallery: [
       '/assets/img/completed_projects/bhavani_kattalai_barrage/Gate-Embedded-Parts-sseb.jpg',
@@ -218,6 +248,8 @@ export const completedProjects = [
     summary: 'LOWER METTUR HYDRO ELECTRIC PROJECT, BARRAGE IV 2 X 15 MW',
     place: 'SALEM DIST, TAMILNADU',
     department: 'TNEB',
+    category: 'hydro',
+    description: 'Engineering, procurement and construction of the hydro-mechanical and electro-mechanical works — design, manufacture, supply, erection, testing and commissioning of penstock and steel liner, turbine, generator, excitation system, control panels and the connected substation. Delivered for TNEB at SALEM DIST, TAMILNADU.',
     cover: '/assets/img/completed_projects/mettur-barrage-vi-2x15-mw/sseb_gate-works.jpg',
     gallery: [
       '/assets/img/completed_projects/mettur-barrage-vi-2x15-mw/sseb_gate-works.jpg',
@@ -229,6 +261,8 @@ export const completedProjects = [
     summary: 'Chennai,TamilNadu.India',
     place: 'Chennai,Tamil Nadu.India.',
     department: 'Storm Water Drain Department.',
+    category: 'civil',
+    description: 'Civil and structural construction works, covering foundations, superstructure, drainage and the associated finishing works. Delivered for Storm Water Drain Department. at Chennai,Tamil Nadu.India..',
     cover: '/assets/img/completed_projects/chennai/chennai_corp.png',
     gallery: [],
   },
@@ -238,6 +272,8 @@ export const completedProjects = [
     summary: 'TamilNadu.India',
     place: 'Chennai,Tamil Nadu.India.',
     department: 'Storm Water Drain Department.',
+    category: 'civil',
+    description: 'Civil and structural construction works, covering foundations, superstructure, drainage and the associated finishing works. Delivered for Storm Water Drain Department. at Chennai,Tamil Nadu.India..',
     cover: '/assets/img/completed_projects/chennai/chennai_corp.png',
     gallery: [],
   },
@@ -247,6 +283,8 @@ export const completedProjects = [
     summary: 'Chennai Corporation Work(Virugambakkam and Arumbakkam)',
     place: 'Chennai,Tamilnadu',
     department: 'Chennai Corporation Work',
+    category: 'civil',
+    description: 'Civil and structural construction works, covering foundations, superstructure, drainage and the associated finishing works. Delivered for Chennai Corporation Work at Chennai,Tamilnadu.',
     cover: '/assets/img/completed_projects/chennai/chennai_corp.png',
     gallery: [],
   },
@@ -256,6 +294,8 @@ export const completedProjects = [
     summary: 'BHOOTHATHANKETTU SMALL HYDRO ELECTRIC PROJECT 3x8MW',
     place: 'Ernakulam Dist, Kerla',
     department: 'KSEB',
+    category: 'hydro',
+    description: 'Engineering, procurement and construction of the hydro-mechanical and electro-mechanical works — design, manufacture, supply, erection, testing and commissioning of penstock and steel liner, turbine, generator, excitation system, control panels and the connected substation. Delivered for KSEB at Ernakulam Dist, Kerla.',
     cover: '/assets/img/completed_projects/bhoothathankettu/power-house-side-view.jpg',
     gallery: [],
   },
@@ -265,6 +305,8 @@ export const completedProjects = [
     summary: 'TamilNadu.India',
     place: 'Coimbatore, Tamil Nadu.India.',
     department: 'TAMILNADU WATER SUPPLY & DRINAGE BOARD',
+    category: 'water',
+    description: 'Civil and hydro-mechanical works for the reservoir and distribution scheme, including gate works, embedded parts and the associated structures. Delivered for TAMILNADU WATER SUPPLY & DRINAGE BOARD at Coimbatore, Tamil Nadu.India..',
     cover: '/assets/img/completed_projects/pillur-sseb.jpg',
     gallery: [],
   },
@@ -274,9 +316,19 @@ export const completedProjects = [
     summary: 'TamilNadu.India',
     place: 'Tiruvallur District.',
     department: 'WATER RESOURCES DEPARTMENT',
+    category: 'water',
+    description: 'Civil and hydro-mechanical works for the reservoir and distribution scheme, including gate works, embedded parts and the associated structures. Delivered for WATER RESOURCES DEPARTMENT at Tiruvallur District..',
     cover: '/assets/img/completed_projects/tamilnadu-govt.png',
     gallery: [],
   },
+]
+
+export const projectCategories = [
+  { id: 'all', label: 'All projects' },
+  { id: 'hydro', label: 'Hydro power' },
+  { id: 'dam', label: 'Dam & gate works' },
+  { id: 'water', label: 'Water supply' },
+  { id: 'civil', label: 'Civil & infrastructure' },
 ]
 
 export const findProject = (slug) => completedProjects.find((p) => p.slug === slug)

@@ -257,3 +257,11 @@ export function FileEditIcon({ className = 'h-5 w-5' }) {
     </svg>
   )
 }
+
+export function TagIcon({ className = 'h-5 w-5' }) {
+  return (
+    <svg {...base} className={className}>
+      <path d="M11.4 2H4a2 2 0 0 0-2 2v7.4c0 .5.2 1 .6 1.4l8.6 8.6a2 2 0 0 0 2.8 0l7.4-7.4a2 2 0 0 0 0-2.8L12.8 2.6a2 2 0 0 0-1.4-.6ZM7 8.5A1.5 1.5 0 1 1 7 5.5a1.5 1.5 0 0 1 0 3Z" />
+    </svg>
+  )
+}

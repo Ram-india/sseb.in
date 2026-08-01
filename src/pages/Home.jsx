@@ -53,7 +53,7 @@ export default function Home() {
           sticks below the header, not under it. */}
       <div
         className="sticky z-0"
-        style={{ top: 'var(--header-height, 110px)' }}
+        style={{ top: 'var(--header-height-live, var(--header-height, 110px))' }}
       >
         <HeroSlider />
       </div>

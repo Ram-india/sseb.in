@@ -100,6 +100,7 @@ export default function PageShell({
   section,
   title,
   image = '/assets/images/bg.jpg',
+  wide = false, // drop the side nav — for pages that are not part of a section
   children,
 }) {
   // scale(1.12) is the overscan the drift needs; the hook composes both into
@@ -172,16 +173,18 @@ export default function PageShell({
       <ReadingProgress />
 
       <div className="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:py-20">
-        <div className="grid gap-12 lg:grid-cols-12 lg:gap-10 xl:gap-14">
+        <div className={`grid gap-12 ${wide ? '' : 'lg:grid-cols-12 lg:gap-10 xl:gap-14'}`}>
           {/* Deliberately NOT wrapped in a scroll reveal. This is the page's
               actual content — if the observer never fires (or a crawler does
               not run one) an opacity-0 article means a blank page. Reveals are
               for decoration; body copy renders unconditionally. */}
-          <article className="prose-corporate lg:col-span-9">{children}</article>
+          <article className={`prose-corporate ${wide ? '' : 'lg:col-span-9'}`}>{children}</article>
 
-          <aside className="lg:col-span-3">
-            <SectionNav section={section} />
-          </aside>
+          {!wide && (
+            <aside className="lg:col-span-3">
+              <SectionNav section={section} />
+            </aside>
+          )}
         </div>
       </div>
     </>

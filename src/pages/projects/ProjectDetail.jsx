@@ -1,58 +1,26 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import PageShell from '../../components/PageShell'
 import Stagger from '../../components/Stagger'
 import Tilt3D from '../../components/Tilt3D'
 import Seo from '../../components/Seo'
-import { completedProjects, findProject } from '../../data/completedProjects'
-import { ArrowRightIcon, BuildingIcon, CloseIcon, MapPinIcon } from '../../components/Icons'
+import Lightbox from '../../components/Lightbox'
+import {
+  completedProjects,
+  findProject,
+  projectCategories,
+} from '../../data/completedProjects'
+import { ArrowRightIcon, BuildingIcon, MapPinIcon, TagIcon } from '../../components/Icons'
 
-/** Click a photo to open it full size; Escape or the backdrop closes it. */
-function Lightbox({ image, title, onClose }) {
-  useEffect(() => {
-    const onKey = (event) => {
-      if (event.key === 'Escape') onClose()
-    }
-    document.addEventListener('keydown', onKey)
-    document.body.style.overflow = 'hidden'
-    return () => {
-      document.removeEventListener('keydown', onKey)
-      document.body.style.overflow = ''
-    }
-  }, [onClose])
-
-  return (
-    <div
-      role="dialog"
-      aria-modal="true"
-      aria-label={title}
-      onClick={onClose}
-      className="fixed inset-0 z-50 flex items-center justify-center bg-deep/90 p-4 backdrop-blur-sm"
-    >
-      <button
-        type="button"
-        onClick={onClose}
-        aria-label="Close"
-        className="absolute right-5 top-5 rounded-full border border-white/30 p-2 text-white transition hover:border-accent hover:bg-accent"
-      >
-        <CloseIcon />
-      </button>
-      <img
-        src={image}
-        alt={title}
-        onClick={(event) => event.stopPropagation()}
-        className="max-h-[88vh] max-w-full rounded-xl object-contain shadow-panel"
-      />
-    </div>
-  )
-}
+const categoryLabel = (id) =>
+  projectCategories.find((category) => category.id === id)?.label ?? id
 
 // Converted from the twenty pages under projects/completed-projects/ — one
 // template driven by data, replacing twenty near-identical PHP files.
 export default function ProjectDetail() {
   const { slug } = useParams()
   const project = findProject(slug)
-  const [lightbox, setLightbox] = useState(null)
+  const [lightboxIndex, setLightboxIndex] = useState(null)
 
   if (!project) {
     return (
@@ -79,7 +47,20 @@ export default function ProjectDetail() {
 
       <PageShell section="Projects" title={project.title} image={project.cover}>
         {/* project info, as the PHP page's info list */}
-        <dl className="grid gap-4 sm:grid-cols-2">
+        <dl className="grid gap-4 sm:grid-cols-3">
+          {project.category && (
+            <div className="flex items-start gap-3 rounded-2xl border border-line bg-subtle p-5">
+              <TagIcon className="mt-0.5 h-5 w-5 shrink-0 text-accent" />
+              <div>
+                <dt className="text-[12px] font-semibold uppercase tracking-[0.14em] text-muted">
+                  Category
+                </dt>
+                <dd className="mt-1 text-left font-semibold capitalize text-ink">
+                  {categoryLabel(project.category)}
+                </dd>
+              </div>
+            </div>
+          )}
           {project.department && (
             <div className="flex items-start gap-3 rounded-2xl border border-line bg-subtle p-5">
               <BuildingIcon className="mt-0.5 h-5 w-5 shrink-0 text-accent" />
@@ -105,7 +86,7 @@ export default function ProjectDetail() {
           )}
         </dl>
 
-        {project.summary && <p className="mt-8">{project.summary}</p>}
+        {project.description && <p className="mt-8">{project.description}</p>}
 
         {project.gallery.length > 0 && (
           <>
@@ -117,12 +98,12 @@ export default function ProjectDetail() {
             </h2>
 
             <Stagger className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-              {project.gallery.map((image) => (
+              {project.gallery.map((image, imageIndex) => (
                 <Stagger.Item key={image}>
                   <Tilt3D max={8} lift={12}>
                     <button
                       type="button"
-                      onClick={() => setLightbox(image)}
+                      onClick={() => setLightboxIndex(imageIndex)}
                       className="group block w-full overflow-hidden rounded-xl border border-line bg-surface shadow-card transition-shadow duration-300 hover:shadow-cardHover"
                     >
                       <img
@@ -167,8 +148,14 @@ export default function ProjectDetail() {
         </Link>
       </PageShell>
 
-      {lightbox && (
-        <Lightbox image={lightbox} title={project.title} onClose={() => setLightbox(null)} />
+      {lightboxIndex !== null && (
+        <Lightbox
+          images={project.gallery}
+          index={lightboxIndex}
+          title={project.title}
+          onIndexChange={setLightboxIndex}
+          onClose={() => setLightboxIndex(null)}
+        />
       )}
     </>
   )

@@ -29,7 +29,7 @@
   --c-ink: 12 27 42;
   --c-body: 75 92 112;
   --c-muted: 114 134 160;
-  --c-accent: 11 111 209;
+  --c-accent: 140 7 4;
   --c-surface-hover: 228 234 242; /* card hover: must read against the
                                      #f4f7fa section band, not just white */
   --c-deep: 12 27 42;
@@ -179,9 +179,14 @@ html.lenis-active body {
     }
   }
 
+  /* Sized from the header's *live* height, so as the contact bar collapses the
+     hero grows to meet it. Using the at-rest height here left the hero stuck
+     37px below the shrunken header — a visible gap for the whole scroll.
+     The header spacer deliberately still uses the at-rest value, so the page
+     itself never jumps when the bar collapses. */
   .hero-fullscreen {
-    height: calc(100vh - var(--header-height, 110px));
-    height: calc(100dvh - var(--header-height, 110px));
+    height: calc(100vh - var(--header-height-live, var(--header-height, 110px)));
+    height: calc(100dvh - var(--header-height-live, var(--header-height, 110px)));
     min-height: 460px;
   }
 

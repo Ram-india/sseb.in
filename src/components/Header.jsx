@@ -5,7 +5,12 @@ import { contact } from '../data/site'
 import ThemeToggle from './ThemeToggle'
 import { CloseIcon, MailIcon, MenuIcon, PhoneIcon } from './Icons'
 
-const SHRINK_AT = 24
+// Must exceed the difference between the header's at-rest and collapsed
+// heights (114 - 77 = 37px). The home hero is sticky at the live header
+// height but sits below a spacer of the at-rest height, so it only reaches
+// its sticky point after ~37px of scroll. Collapsing sooner than that opens a
+// gap between the header and the hero for those first few pixels.
+const SHRINK_AT = 48
 
 export default function Header() {
   const { pathname } = useLocation()

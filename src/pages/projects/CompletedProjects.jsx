@@ -1,12 +1,32 @@
+import { useMemo, useState } from 'react'
 import { Link } from 'react-router-dom'
 import PageShell from '../../components/PageShell'
 import Stagger from '../../components/Stagger'
 import Tilt3D from '../../components/Tilt3D'
-import { completedProjects } from '../../data/completedProjects'
+import { completedProjects, projectCategories } from '../../data/completedProjects'
 import { ArrowRightIcon, MapPinIcon } from '../../components/Icons'
 
 // Converted from projects/completed-projects.php.
 export default function CompletedProjects() {
+  const [category, setCategory] = useState('all')
+
+  const visible = useMemo(
+    () =>
+      category === 'all'
+        ? completedProjects
+        : completedProjects.filter((project) => project.category === category),
+    [category],
+  )
+
+  // Counts come off the full list so a filter never shows itself as empty.
+  const counts = useMemo(() => {
+    const tally = { all: completedProjects.length }
+    for (const project of completedProjects) {
+      tally[project.category] = (tally[project.category] ?? 0) + 1
+    }
+    return tally
+  }, [])
+
   return (
     <PageShell
       section="Projects"
@@ -18,8 +38,35 @@ export default function CompletedProjects() {
         boards, corporations and departments across Tamil Nadu, Kerala and Karnataka.
       </p>
 
-      <Stagger as="ul" className="mt-10 grid gap-6 sm:grid-cols-2">
-        {completedProjects.map((project) => (
+      {/* category filter */}
+      <div className="mt-8 flex flex-wrap gap-2">
+        {projectCategories.map((option) => (
+          <button
+            key={option.id}
+            type="button"
+            onClick={() => setCategory(option.id)}
+            aria-pressed={category === option.id}
+            className={`flex items-center gap-2 rounded-full px-4 py-2 text-[13px] font-semibold transition-all duration-200 ${
+              category === option.id
+                ? 'bg-accent text-white'
+                : 'bg-subtle text-body hover:bg-accent-soft hover:text-accent'
+            }`}
+          >
+            {option.label}
+            <span
+              className={`rounded-full px-1.5 text-[11px] tabular-nums ${
+                category === option.id ? 'bg-white/25' : 'bg-page text-muted'
+              }`}
+            >
+              {counts[option.id] ?? 0}
+            </span>
+          </button>
+        ))}
+      </div>
+
+      {/* key on the category so the stagger replays when the filter changes */}
+      <Stagger key={category} as="ul" className="mt-8 grid gap-6 sm:grid-cols-2">
+        {visible.map((project) => (
           <Stagger.Item as="li" key={project.slug}>
             <Tilt3D className="h-full">
               <Link
