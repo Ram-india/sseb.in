@@ -2,7 +2,6 @@ import { useEffect, useRef, useState } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import Navigation from './Navigation'
 import { contact } from '../data/site'
-import ThemeToggle from './ThemeToggle'
 import { CloseIcon, MailIcon, MenuIcon, PhoneIcon } from './Icons'
 
 // Must exceed the difference between the header's at-rest and collapsed
@@ -157,12 +156,6 @@ export default function Header() {
             <Navigation mobileOpen={mobileOpen} onNavigate={() => setMobileOpen(false)} />
 
             <div className="ml-auto flex items-center gap-3">
-              <ThemeToggle />
-
-              <Link to="/contact" className="btn-primary hidden whitespace-nowrap lg:inline-flex">
-                Contact Us
-              </Link>
-
               <button
                 type="button"
                 onClick={() => setMobileOpen((value) => !value)}

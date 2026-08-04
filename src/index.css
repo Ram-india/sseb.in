@@ -89,7 +89,8 @@ html.lenis-active body {
 
 @layer base {
   body {
-    @apply font-sans text-[17px] font-light leading-[1.7] antialiased;
+    @apply font-sans font-light leading-[1.7] antialiased;
+    font-size: calc(17px * var(--font-scale, 1));
     background-color: rgb(var(--c-page));
     color: rgb(var(--c-body));
     /* Theme switches shouldn't flash; they should cross-fade. */
@@ -124,6 +125,51 @@ html.lenis-active body {
     background-color: rgb(var(--c-accent));
     color: #fff;
   }
+}
+
+/*  Preference hooks
+    ------------------------------------------------------------------------
+    Set on <html> by src/lib/preferences.js. Everything the settings panel
+    changes is expressed here, so the panel only has to record a choice.      */
+
+/* Text size — body copy and the fluid display scale both key off this. */
+html[data-text-size='large'] {
+  --font-scale: 1.1;
+}
+
+html[data-text-size='larger'] {
+  --font-scale: 1.22;
+}
+
+/* High contrast — deepen the text tokens and strengthen the borders. */
+html[data-contrast='high'] {
+  --c-ink: 0 0 0;
+  --c-body: 26 38 52;
+  --c-muted: 60 74 92;
+  --c-line: 148 163 184;
+}
+
+html[data-contrast='high'].dark {
+  --c-ink: 255 255 255;
+  --c-body: 226 234 244;
+  --c-muted: 176 190 208;
+  --c-line: 92 112 140;
+}
+
+/* User-chosen reduced motion, alongside the OS-level media query. */
+html[data-motion='reduce'] *,
+html[data-motion='reduce'] *::before,
+html[data-motion='reduce'] *::after {
+  animation-duration: 0.01ms !important;
+  animation-iteration-count: 1 !important;
+  transition-duration: 0.01ms !important;
+  scroll-behavior: auto !important;
+}
+
+html[data-underline='on'] .prose-corporate a,
+html[data-underline='on'] p a {
+  text-decoration: underline;
+  text-underline-offset: 3px;
 }
 
 @layer components {
@@ -199,7 +245,7 @@ html.lenis-active body {
     @apply tracking-[-0.035em];
     font-family: var(--font-heading);
     font-weight: 800;
-    font-size: clamp(2.25rem, 1.45rem + 3.2vw, 4rem);
+    font-size: calc(clamp(2.25rem, 1.45rem + 3.2vw, 4rem) * var(--font-scale, 1));
     line-height: 1.06;
   }
 
@@ -207,7 +253,7 @@ html.lenis-active body {
     @apply tracking-[-0.03em];
     font-family: var(--font-heading);
     font-weight: 800;
-    font-size: clamp(1.875rem, 1.35rem + 2.1vw, 3rem);
+    font-size: calc(clamp(1.875rem, 1.35rem + 2.1vw, 3rem) * var(--font-scale, 1));
     line-height: 1.12;
   }
 
@@ -216,13 +262,13 @@ html.lenis-active body {
     font-family: var(--font-heading);
     font-weight: 800;
     color: rgb(var(--c-ink));
-    font-size: clamp(1.25rem, 1.12rem + 0.5vw, 1.5rem);
+    font-size: calc(clamp(1.25rem, 1.12rem + 0.5vw, 1.5rem) * var(--font-scale, 1));
     line-height: 1.3;
   }
 
   .lead {
     color: rgb(var(--c-body));
-    font-size: clamp(1.0625rem, 1rem + 0.35vw, 1.25rem);
+    font-size: calc(clamp(1.0625rem, 1rem + 0.35vw, 1.25rem) * var(--font-scale, 1));
     line-height: 1.65;
   }
 
@@ -242,7 +288,8 @@ html.lenis-active body {
       text-align inherits, so everything inside a .prose-corporate article —
       cards, list items, callouts — picks this up without extra classes.       */
   .prose-corporate {
-    @apply text-[17px] font-light leading-[1.75];
+    @apply font-light leading-[1.75];
+    font-size: calc(17px * var(--font-scale, 1));
     color: rgb(var(--c-body));
     text-align: justify;
     hyphens: manual;

@@ -269,12 +269,6 @@ export default function Navigation({ mobileOpen, onNavigate }) {
             <MobileItem key={item.label} item={item} onNavigate={onNavigate} />
           ))}
         </ul>
-
-        <div className="px-5 py-5">
-          <Link to="/contact" onClick={onNavigate} className="btn-primary w-full">
-            Contact Us
-          </Link>
-        </div>
       </nav>
     </>
   )

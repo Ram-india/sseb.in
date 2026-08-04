@@ -265,3 +265,11 @@ export function TagIcon({ className = 'h-5 w-5' }) {
     </svg>
   )
 }
+
+export function SlidersIcon({ className = 'h-5 w-5' }) {
+  return (
+    <svg {...base} className={className}>
+      <path d="M3 6h8v2H3V6Zm0 10h11v2H3v-2Zm13-10h5v2h-5V6Zm3 10h2v2h-2v-2ZM12 3h2v8h-2V3Zm5 10h2v8h-2v-8Z" />
+    </svg>
+  )
+}

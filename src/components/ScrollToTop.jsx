@@ -35,7 +35,7 @@ export default function ScrollToTop() {
         else window.scrollTo({ top: 0, behavior: 'smooth' })
       }}
       aria-label="Scroll to top"
-      className="fixed bottom-6 right-6 z-40 flex h-11 w-11 items-center justify-center rounded-full bg-accent text-white shadow-lg transition-colors hover:brightness-110"
+      className="fixed bottom-24 right-[1.85rem] z-40 flex h-11 w-11 items-center justify-center rounded-full bg-accent text-white shadow-lg transition-colors hover:brightness-110"
     >
       <ChevronUpIcon className="h-5 w-5" />
     </button>

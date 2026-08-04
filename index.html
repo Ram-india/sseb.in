@@ -25,16 +25,29 @@
       rel="stylesheet"
     />
 
-    <!-- Resolve the theme before first paint so there is no flash of the
-         wrong mode. Kept inline and dependency-free on purpose. -->
+    <!-- Resolve every preference before first paint: no flash of the wrong
+         theme, contrast or text size. Mirrors src/lib/preferences.js — keep
+         the two in step. -->
     <script>
       (function () {
         try {
-          var stored = localStorage.getItem('sseb-theme')
+          var stored = {}
+          try { stored = JSON.parse(localStorage.getItem('sseb-prefs') || '{}') } catch (e) {}
+
+          // migrate the original theme-only key
+          var legacy = localStorage.getItem('sseb-theme')
+          if (!stored.theme && (legacy === 'dark' || legacy === 'light')) stored.theme = legacy
+
+          var root = document.documentElement
           var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches
-          if (stored === 'dark' || (!stored && prefersDark)) {
-            document.documentElement.classList.add('dark')
-          }
+          var theme = stored.theme || 'system'
+          if (theme === 'dark' || (theme === 'system' && prefersDark)) root.classList.add('dark')
+
+          if (stored.motion === 'reduce') root.dataset.motion = 'reduce'
+          if (stored.textSize === 'large' || stored.textSize === 'larger')
+            root.dataset.textSize = stored.textSize
+          if (stored.contrast === 'high') root.dataset.contrast = 'high'
+          if (stored.underlineLinks) root.dataset.underline = 'on'
         } catch (e) {}
       })()
     </script>
