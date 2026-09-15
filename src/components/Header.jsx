@@ -153,9 +153,9 @@ export default function Header() {
               />
             </Link>
 
-            <Navigation mobileOpen={mobileOpen} onNavigate={() => setMobileOpen(false)} />
-
             <div className="ml-auto flex items-center gap-3">
+              <Navigation mobileOpen={mobileOpen} onNavigate={() => setMobileOpen(false)} />
+
               <button
                 type="button"
                 onClick={() => setMobileOpen((value) => !value)}

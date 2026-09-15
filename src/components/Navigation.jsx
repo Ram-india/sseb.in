@@ -26,7 +26,7 @@ function isBranchActive(item, pathname) {
 }
 
 const topLevelBase =
-  'relative flex items-center gap-1 whitespace-nowrap rounded-full px-3 py-2 text-[15px] font-semibold transition-colors lg:px-4'
+  'relative flex items-center gap-1 whitespace-nowrap rounded-full px-3 py-2 text-[15px] font-semibold transition-colors lg:px-3.5'
 
 /* ---------------------------------------------------------------- desktop */
 
@@ -69,7 +69,7 @@ function DesktopMenu() {
   return (
     <div ref={ref} className="hidden md:block" onMouseLeave={scheduleClose}>
       <nav aria-label="Main navigation">
-        <ul className="flex items-center gap-1">
+        <ul className="flex items-center justify-end gap-1">
           {navigation.map((item) => {
             if (!item.children) {
               return (

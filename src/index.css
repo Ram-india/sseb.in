@@ -30,6 +30,11 @@
   --c-body: 75 92 112;
   --c-muted: 114 134 160;
   --c-accent: 140 7 4;
+  --c-accent-soft: 251 232 231; /* wash of the brand red, for icon chips */
+  --c-secondary: 13 124 134;
+  --c-secondary-soft: 214 240 242;
+  --c-highlight: 176 106 21;
+  --c-elevated: 255 255 255;
   --c-surface-hover: 228 234 242; /* card hover: must read against the
                                      #f4f7fa section band, not just white */
   --c-deep: 12 27 42;
@@ -47,8 +52,8 @@
   --c-ink: 237 242 248;
   --c-body: 167 180 198;
   --c-muted: 127 142 163;
-  --c-accent: 77 163 255;
-  --c-accent-soft: 23 44 76;
+  --c-accent: 239 106 98;
+  --c-accent-soft: 62 26 24;
   --c-secondary: 61 199 212;
   --c-secondary-soft: 17 52 58;
   --c-highlight: 232 166 66;
@@ -179,9 +184,10 @@ html[data-underline='on'] p a {
      rather than printed. */
   .band-deep {
     /* This band is dark in both themes, so it re-declares the accents at their
-       on-dark values for its whole subtree. Without this the light-theme teal
-       (#0D7C86) lands on navy and all but disappears. */
-    --c-accent: 77 163 255;
+       on-dark values for its whole subtree. The brand red (#8C0704) only
+       reaches 1.8:1 on this navy — unreadable — so it is lifted to #EF6A62,
+       the same hue at 5.7:1. */
+    --c-accent: 239 106 98;
     --c-secondary: 61 199 212;
 
     background-color: rgb(var(--c-deep));
@@ -194,7 +200,7 @@ html[data-underline='on'] p a {
      re-declares the accents at their on-dark values for its subtree. The
      light-theme azure is too dark to read against a sunlit photograph. */
   .on-dark {
-    --c-accent: 77 163 255;
+    --c-accent: 239 106 98;
     --c-secondary: 61 199 212;
   }
 
